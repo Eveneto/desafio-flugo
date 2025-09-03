@@ -11,9 +11,9 @@ export default function Sidebar() {
       borderBottom: { xs: "1px solid #E5E7EB", md: "none" },
       display: "flex",
       flexDirection: { xs: "row", md: "column" },
-      pt: { xs: 2, md: 3 },
+      pt: { xs: 3, md: 5 }, // Aumentado de 2/3 para 3/5
       px: 2,
-      py: { xs: 2, md: 0 },
+      py: { xs: 3, md: 0 }, // Aumentado o padding vertical em mobile também
       alignItems: { xs: "center", md: "flex-start" },
       justifyContent: { xs: "space-between", md: "flex-start" }
     }}>
@@ -26,7 +26,7 @@ export default function Sidebar() {
         <img 
           src="/logo2.png" 
           alt="Flugo" 
-          style={{ height: 32, width: 'auto' }} 
+          style={{ height: 32, width: 'auto', marginTop: 30 }} 
         />
       </Box>
       <List sx={{ 
