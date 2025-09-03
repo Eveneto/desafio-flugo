@@ -14,18 +14,35 @@ function App() {
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#F9FAFB" }}>
+    <Box sx={{ 
+      display: "flex", 
+      minHeight: "100vh", 
+      bgcolor: "#F9FAFB",
+      flexDirection: { xs: "column", md: "row" } // Stack vertical em mobile
+    }}>
       <CssBaseline />
       <Sidebar />
-      <Box sx={{ flex: 1, px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 }, display: "flex", flexDirection: "column" }}>
+      <Box sx={{ 
+        flex: 1, 
+        px: { xs: 1, sm: 2, md: 6 }, 
+        py: { xs: 1, sm: 2, md: 4 }, 
+        display: "flex", 
+        flexDirection: "column",
+        minWidth: 0 // Evita overflow
+      }}>
         {/* Header com avatar */}
-        <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", mb: 3 }}>
+        <Box sx={{ 
+          width: "100%", 
+          display: "flex", 
+          justifyContent: "flex-end", 
+          mb: { xs: 2, md: 3 } 
+        }}>
           <Avatar 
             src="https://i.pravatar.cc/150?img=10" 
-            sx={{ width: 32, height: 32 }}
+            sx={{ width: { xs: 28, md: 32 }, height: { xs: 28, md: 32 } }}
           />
         </Box>
-        <Box sx={{ width: "100%", mb: 4 }}>
+        <Box sx={{ width: "100%", mb: { xs: 2, md: 4 } }}>
           {showForm ? (
             <MultiStepForm onBack={handleFormSuccess} />
           ) : (

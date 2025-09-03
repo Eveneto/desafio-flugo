@@ -8,13 +8,25 @@ const steps = ["Infos Básicas", "Infos Profissionais"];
 
 function StepSidebar({ activeStep }: { activeStep: number }) {
   return (
-    <Box sx={{ pt: 2 }}>
+    <Box sx={{ 
+      pt: { xs: 0, md: 2 },
+      display: { xs: 'flex', md: 'block' },
+      gap: { xs: 4, md: 0 },
+      justifyContent: { xs: 'center', md: 'flex-start' }
+    }}>
       {steps.map((label, idx) => (
-        <Box key={label} sx={{ display: "flex", alignItems: "center", mb: 4 }}>
+        <Box key={label} sx={{ 
+          display: "flex", 
+          alignItems: "center", 
+          mb: { xs: 0, md: 4 },
+          flexDirection: { xs: 'column', md: 'row' },
+          textAlign: { xs: 'center', md: 'left' },
+          gap: { xs: 1, md: 0 }
+        }}>
           <Box
             sx={{
-              width: 24,
-              height: 24,
+              width: { xs: 20, md: 24 },
+              height: { xs: 20, md: 24 },
               borderRadius: "50%",
               bgcolor: idx <= activeStep ? "#10B981" : "#E5E7EB",
               color: idx <= activeStep ? "#fff" : "#9CA3AF",
@@ -22,8 +34,8 @@ function StepSidebar({ activeStep }: { activeStep: number }) {
               alignItems: "center",
               justifyContent: "center",
               fontWeight: 600,
-              fontSize: 12,
-              mr: 3
+              fontSize: { xs: 11, md: 12 },
+              mr: { xs: 0, md: 3 }
             }}
           >
             {idx + 1}
@@ -32,7 +44,7 @@ function StepSidebar({ activeStep }: { activeStep: number }) {
             sx={{ 
               color: idx === activeStep ? "#10B981" : idx < activeStep ? "#111827" : "#9CA3AF", 
               fontWeight: idx === activeStep ? 600 : 500,
-              fontSize: 14
+              fontSize: { xs: 12, md: 14 }
             }}
           >
             {label}
@@ -107,8 +119,12 @@ export default function MultiStepForm({ onBack }: { onBack?: () => void }) {
 
   return (
     <Box sx={{ width: "100%", mx: "auto" }}>
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="subtitle2" sx={{ color: "#9CA3AF", mb: 2, fontSize: 14 }}>
+      <Box sx={{ mb: { xs: 3, md: 4 } }}>
+        <Typography variant="subtitle2" sx={{ 
+          color: "#9CA3AF", 
+          mb: 2, 
+          fontSize: { xs: 13, md: 14 }
+        }}>
           Colaboradores &nbsp;•&nbsp; Cadastrar Colaborador
         </Typography>
         <LinearProgress
@@ -122,14 +138,36 @@ export default function MultiStepForm({ onBack }: { onBack?: () => void }) {
           }}
         />
       </Box>
-      <Paper elevation={0} sx={{ p: 6, borderRadius: 2, border: "1px solid #E5E7EB", boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)" }}>
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 6 }}>
-          <Box sx={{ width: { xs: '100%', md: '200px' }, minWidth: 200 }}>
+      <Paper 
+        elevation={0} 
+        sx={{ 
+          p: { xs: 3, sm: 4, md: 6 }, 
+          borderRadius: 2, 
+          border: "1px solid #E5E7EB", 
+          boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)" 
+        }}
+      >
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' }, 
+          gap: { xs: 4, md: 6 } 
+        }}>
+          <Box sx={{ 
+            width: { xs: '100%', md: '200px' }, 
+            minWidth: { xs: 'auto', md: 200 },
+            display: { xs: 'flex', md: 'block' },
+            justifyContent: { xs: 'center', md: 'flex-start' }
+          }}>
             <StepSidebar activeStep={activeStep} />
           </Box>
-          <Box sx={{ flex: 1, maxWidth: 400 }}>
+          <Box sx={{ flex: 1, maxWidth: { xs: '100%', md: 400 } }}>
             <Box>
-              <Typography variant="h5" sx={{ mb: 4, color: "#111827", fontWeight: 600, fontSize: 20 }}>
+              <Typography variant="h5" sx={{ 
+                mb: { xs: 3, md: 4 }, 
+                color: "#111827", 
+                fontWeight: 600, 
+                fontSize: { xs: 18, md: 20 }
+              }}>
                 {activeStep === 0 ? "Informações Básicas" : "Informações Profissionais"}
               </Typography>
               {activeStep === 0 && (
@@ -162,7 +200,16 @@ export default function MultiStepForm({ onBack }: { onBack?: () => void }) {
                   </Button>
                 </Box>
               ) : (
-                <Box sx={{ display: "flex", justifyContent: "space-between", mt: 8, pt: 4, borderTop: "1px solid #F3F4F6" }}>
+                <Box sx={{ 
+                  display: "flex", 
+                  flexDirection: { xs: "column", sm: "row" },
+                  justifyContent: "space-between", 
+                  alignItems: { xs: "stretch", sm: "center" },
+                  mt: { xs: 6, md: 8 }, 
+                  pt: 4, 
+                  borderTop: "1px solid #F3F4F6",
+                  gap: { xs: 3, sm: 0 }
+                }}>
                   <Button 
                     onClick={handleBack} 
                     disabled={loading}
@@ -172,6 +219,7 @@ export default function MultiStepForm({ onBack }: { onBack?: () => void }) {
                       fontSize: 14,
                       textTransform: "none",
                       px: 0,
+                      alignSelf: { xs: "flex-start", sm: "center" },
                       '&:hover': {
                         backgroundColor: 'transparent',
                         color: "#6B7280"
@@ -186,7 +234,7 @@ export default function MultiStepForm({ onBack }: { onBack?: () => void }) {
                     sx={{ 
                       bgcolor: "#10B981", 
                       borderRadius: 1.5, 
-                      px: 6, 
+                      px: { xs: 4, sm: 6 }, 
                       py: 1.5,
                       fontWeight: 600, 
                       fontSize: 14,

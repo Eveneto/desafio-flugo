@@ -115,8 +115,22 @@ export default function EmployeeList({ onNew }: { onNew?: () => void }) {
         </Alert>
       )}
       
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: 600, color: "#111827", fontSize: 24 }}>
+      <Box sx={{ 
+        display: "flex", 
+        flexDirection: { xs: "column", sm: "row" },
+        justifyContent: "space-between", 
+        alignItems: { xs: "stretch", sm: "center" }, 
+        mb: { xs: 3, md: 4 },
+        gap: { xs: 2, sm: 0 }
+      }}>
+        <Typography 
+          variant="h5" 
+          sx={{ 
+            fontWeight: 600, 
+            color: "#111827", 
+            fontSize: { xs: 20, md: 24 }
+          }}
+        >
           Colaboradores
         </Typography>
         <Button
@@ -125,7 +139,7 @@ export default function EmployeeList({ onNew }: { onNew?: () => void }) {
           onClick={onNew}
           sx={{
             borderRadius: 1.5,
-            px: 4,
+            px: { xs: 3, sm: 4 },
             py: 1.2,
             fontWeight: 600,
             fontSize: 14,
@@ -140,20 +154,62 @@ export default function EmployeeList({ onNew }: { onNew?: () => void }) {
         </Button>
       </Box>
       
-      <TableContainer component={Paper} sx={{ borderRadius: 2, boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)", border: "1px solid #E5E7EB", width: "100%" }}>
-        <Table sx={{ width: "100%" }}>
+      <TableContainer 
+        component={Paper} 
+        sx={{ 
+          borderRadius: 2, 
+          boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1)", 
+          border: "1px solid #E5E7EB", 
+          width: "100%",
+          overflowX: "auto"
+        }}
+      >
+        <Table sx={{ width: "100%", minWidth: { xs: 300, sm: 650 } }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 500, color: "#9CA3AF", borderBottom: "1px solid #F3F4F6", fontSize: 12, py: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <TableCell sx={{ 
+                fontWeight: 500, 
+                color: "#9CA3AF", 
+                borderBottom: "1px solid #F3F4F6", 
+                fontSize: { xs: 11, sm: 12 }, 
+                py: { xs: 2, sm: 3 }, 
+                textTransform: "uppercase", 
+                letterSpacing: "0.05em" 
+              }}>
                 Nome ↓
               </TableCell>
-              <TableCell sx={{ fontWeight: 500, color: "#9CA3AF", borderBottom: "1px solid #F3F4F6", fontSize: 12, py: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <TableCell sx={{ 
+                fontWeight: 500, 
+                color: "#9CA3AF", 
+                borderBottom: "1px solid #F3F4F6", 
+                fontSize: { xs: 11, sm: 12 }, 
+                py: { xs: 2, sm: 3 }, 
+                textTransform: "uppercase", 
+                letterSpacing: "0.05em",
+                display: { xs: "none", sm: "table-cell" }
+              }}>
                 Email ↓
               </TableCell>
-              <TableCell sx={{ fontWeight: 500, color: "#9CA3AF", borderBottom: "1px solid #F3F4F6", fontSize: 12, py: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <TableCell sx={{ 
+                fontWeight: 500, 
+                color: "#9CA3AF", 
+                borderBottom: "1px solid #F3F4F6", 
+                fontSize: { xs: 11, sm: 12 }, 
+                py: { xs: 2, sm: 3 }, 
+                textTransform: "uppercase", 
+                letterSpacing: "0.05em" 
+              }}>
                 Departamento ↓
               </TableCell>
-              <TableCell sx={{ fontWeight: 500, color: "#9CA3AF", borderBottom: "1px solid #F3F4F6", fontSize: 12, py: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <TableCell sx={{ 
+                fontWeight: 500, 
+                color: "#9CA3AF", 
+                borderBottom: "1px solid #F3F4F6", 
+                fontSize: { xs: 11, sm: 12 }, 
+                py: { xs: 2, sm: 3 }, 
+                textTransform: "uppercase", 
+                letterSpacing: "0.05em" 
+              }}>
                 Status ↓
               </TableCell>
             </TableRow>
@@ -165,33 +221,63 @@ export default function EmployeeList({ onNew }: { onNew?: () => void }) {
                 '&:not(:last-child) td': { borderBottom: "1px solid #F3F4F6" },
                 '&:hover': { bgcolor: "#F9FAFB" }
               }}>
-                <TableCell sx={{ borderBottom: "inherit", py: 4 }}>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-                    <Avatar src={emp.avatarUrl} alt={emp.name} sx={{ width: 32, height: 32 }} />
-                    <Typography sx={{ fontWeight: 500, color: "#111827", fontSize: 14 }}>
-                      {emp.name}
-                    </Typography>
+                <TableCell sx={{ borderBottom: "inherit", py: { xs: 2, sm: 4 } }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 2, sm: 3 } }}>
+                    <Avatar 
+                      src={emp.avatarUrl} 
+                      alt={emp.name} 
+                      sx={{ width: { xs: 28, sm: 32 }, height: { xs: 28, sm: 32 } }} 
+                    />
+                    <Box>
+                      <Typography sx={{ 
+                        fontWeight: 500, 
+                        color: "#111827", 
+                        fontSize: { xs: 13, sm: 14 }
+                      }}>
+                        {emp.name}
+                      </Typography>
+                      {/* Mostrar email em mobile abaixo do nome */}
+                      <Typography sx={{ 
+                        color: "#6B7280", 
+                        fontSize: { xs: 12, sm: 14 },
+                        display: { xs: "block", sm: "none" }
+                      }}>
+                        {emp.email}
+                      </Typography>
+                    </Box>
                   </Box>
                 </TableCell>
-                <TableCell sx={{ color: "#6B7280", borderBottom: "inherit", fontSize: 14, py: 4 }}>
+                <TableCell sx={{ 
+                  color: "#6B7280", 
+                  borderBottom: "inherit", 
+                  fontSize: { xs: 13, sm: 14 }, 
+                  py: { xs: 2, sm: 4 },
+                  display: { xs: "none", sm: "table-cell" }
+                }}>
                   {emp.email}
                 </TableCell>
-                <TableCell sx={{ color: "#111827", borderBottom: "inherit", fontSize: 14, py: 4 }}>
+                <TableCell sx={{ 
+                  color: "#111827", 
+                  borderBottom: "inherit", 
+                  fontSize: { xs: 13, sm: 14 }, 
+                  py: { xs: 2, sm: 4 }
+                }}>
                   {emp.department}
                 </TableCell>
-                <TableCell sx={{ borderBottom: "inherit", py: 4 }}>
+                <TableCell sx={{ borderBottom: "inherit", py: { xs: 2, sm: 4 } }}>
                   <Chip
                     label={emp.status}
+                    size="small"
                     sx={{
                       fontWeight: 500,
-                      fontSize: 12,
-                      height: 22,
+                      fontSize: { xs: 11, sm: 12 },
+                      height: { xs: 24, sm: 32 },
                       bgcolor: emp.status === "Ativo" ? "#D1FAE5" : "#FEE2E2",
                       color: emp.status === "Ativo" ? "#065F46" : "#991B1B",
                       border: "none",
                       borderRadius: 1,
                       '& .MuiChip-label': {
-                        px: 2
+                        px: { xs: 1.5, sm: 2 }
                       }
                     }}
                   />
