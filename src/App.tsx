@@ -1,4 +1,4 @@
-import { CssBaseline, Container, Box, Avatar } from "@mui/material";
+import { CssBaseline, Box, Avatar } from "@mui/material";
 import { useState } from "react";
 import EmployeeList from "./EmployeeList";
 import MultiStepForm from "./MultiStepForm";
